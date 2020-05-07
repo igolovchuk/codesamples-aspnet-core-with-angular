@@ -1,0 +1,35 @@
+<div class="table-background border">
+
+  <ng-container *ngIf="supplier">
+    <app-delete-supplier [supplier]="supplier" (deleteSupplier)="refreshTable()">
+    </app-delete-supplier>
+
+    <app-edit-supplier [supplier]="supplier" (updateSupplier)="refreshTable()">
+    </app-edit-supplier>
+  </ng-container>
+
+  <ng-template #generalTemplate>
+    <app-create-supplier (createSupplier)="refreshTable()">
+    </app-create-supplier>
+  </ng-template>
+
+  <ng-template #actionsTemplate let-data="templateData">
+    <button class="btn" (click)="supplier=data" data-toggle="modal" data-target="#editSupplier">
+      <i class="fas fa-edit"></i>
+    </button>
+
+    <button class="btn" (click)="supplier=data" data-toggle="modal" data-target="#deleteSupplier">
+      <i class="fas fas fa-trash-alt"></i>
+    </button>
+  </ng-template>
+
+  <div>
+      <h2 class="text-center py-3 m-0">{{ 'Routing.supplier' | translate }}</h2>
+
+    <mat-fsp-table #table 
+      [columnDefinitions]="columnDefinitions" 
+      [columnNames]="columnNames" 
+      [dataSource]="dataSource">
+    </mat-fsp-table>
+  </div>
+</div>

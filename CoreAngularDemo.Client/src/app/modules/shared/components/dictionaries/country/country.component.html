@@ -1,0 +1,23 @@
+<mat-card>
+  <ng-container *ngIf="country">
+    <app-delete-country [country]="country" (deleteCountry)="refreshTable()"></app-delete-country>
+  </ng-container>
+
+  <ng-template #generalTemplate>
+    <app-create-country (createCountry)="refreshTable()"></app-create-country>
+  </ng-template>
+  
+  <ng-template #actionsTemplate let-data="templateData">
+    <button class="btn" (click)="country=data" data-toggle="modal" data-target="#deleteCountry">
+      <i class="fas fa-trash-alt"></i>
+    </button>
+  </ng-template>
+
+  <div>
+    <h2 class="text-center py-3 m-0">Країни</h2>
+  </div>
+
+  <mat-fsp-table #table [columnDefinitions]="columnDefinitions" [columnNames]="columnNames" [dataSource]="dataSource">
+  </mat-fsp-table>
+
+</mat-card>

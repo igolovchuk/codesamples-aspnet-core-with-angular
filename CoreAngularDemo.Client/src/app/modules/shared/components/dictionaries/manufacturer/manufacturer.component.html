@@ -1,0 +1,33 @@
+<mat-card>
+  <ng-container *ngIf="manufacturer">
+    <app-delete-manufacturer [manufacturer]="manufacturer" (deleteManufacturer)="refreshTable()">
+    </app-delete-manufacturer>
+      
+    <app-edit-manufacturer [manufacturer]="manufacturer" (updateManufacturer)="refreshTable()">
+    </app-edit-manufacturer>
+  </ng-container>
+
+  <div>
+    <h2 class="text-center py-3 m-0">Виробники</h2>
+  </div>
+
+  <ng-template #generalTemplate>
+    <app-create-manufacturer (createManufacturer)="refreshTable()"></app-create-manufacturer>
+  </ng-template>
+
+  <ng-template #actionsTemplate let-data="templateData">
+    <button class="btn" (click)="manufacturer=data" data-toggle="modal" data-target="#deleteManufacturer">
+      <i class="fas fas fa-trash-alt"></i>
+    </button>
+
+    <button class="btn" (click)="manufacturer=data" data-toggle="modal" data-target="#editManufacturer">
+      <i class="fas fa-edit"></i>
+    </button>
+  </ng-template>
+
+  <div>
+    <mat-fsp-table #table [columnDefinitions]="columnDefinitions" [columnNames]="columnNames" [dataSource]="dataSource">
+    </mat-fsp-table>
+  </div>
+
+</mat-card>

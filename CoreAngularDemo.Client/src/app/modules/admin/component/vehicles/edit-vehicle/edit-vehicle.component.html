@@ -1,0 +1,77 @@
+<div class="modal fade" id="editVehicle" tabindex="-1" vehicleType="dialog" aria-labelledby="editVehicle" aria-hidden="true">
+    <div class="modal-dialog modal-lg" vehicleType="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{'Shared.Vehicles.Edit.Title' | translate }}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="vehicleForm">
+                    <div class="row">
+                        <div class="form-group col-md-6 ">
+                            <label class="required-field">{{'Shared.Vehicles.VehicleType' | translate }}:</label>
+                            <select formControlName="vehicleType" class="form-control">
+                <option hidden value="" disabled selected>{{'Shared.Vehicles.Edit.SelectVehicleType' | translate }}:</option>
+                <option *ngFor="let item of vehicleTypeList" [value]="item.name">{{ item.name }}</option>
+              </select>
+                        </div>
+
+                        <div class="form-group col-md-6 " [customErrorMessages]="CustomLetNumErrorMessages">
+                            <label class="required-field">{{'Shared.Vehicles.VinCode' | translate }}:</label>
+                            <input type="text" class="form-control" formControlName="vincode" autocomplete="off" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6 " [customErrorMessages]="CustomNumErrorMessages">
+                            <label>{{'Shared.Vehicles.InventoryId' | translate }}:</label>
+                            <input type="text" class="form-control" formControlName="inventoryId" autocomplete="off" />
+                        </div>
+                        <div class="form-group col-md-6 " [customErrorMessages]="CustomLetNumErrorMessages">
+                            <label class="required-field">{{'Shared.Vehicles.RegNum' | translate }}:</label>
+                            <input type="text" class="form-control" formControlName="regNum" autocomplete="off" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6 " [customErrorMessages]="CustomLetNumErrorMessages">
+                            <label class="required-field">{{'Shared.Vehicles.Brand' | translate }}:</label>
+                            <input type="text" class="form-control" formControlName="brand" autocomplete="off" />
+                        </div>
+
+                        <div class="form-group col-md-6 ">
+                            <label>{{'Shared.Vehicles.Model' | translate }}:</label>
+                            <input type="text" class="form-control" formControlName="model" autocomplete="off" />
+                        </div>
+                    </div>
+
+                    <div class="form-group ">
+                        <label>{{'Shared.Vehicles.Location' | translate }}:</label>
+                        <select formControlName="location" class="form-control">
+              <option hidden value="" disabled selected>{{'Shared.Vehicles.Create.SelectLocation' | translate }}</option>
+              <option *ngFor="let item of locationList" [value]="item.name">{{ item.name }}</option>
+            </select>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6 ">
+                            <label class="required-field">{{'Shared.Vehicles.CommissioningDate' | translate }}:</label>
+                            <input type="date" class="form-control" formControlName="commissioningDate" autocomplete="off" />
+                        </div>
+
+                        <div class="form-group col-md-6 ">
+                            <label class="required-field">{{'Shared.Vehicles.WarrantyEndDate' | translate }}:</label>
+                            <input type="date" class="form-control" formControlName="warrantyEndDate" autocomplete="off" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button #close type="button" class="btn btn-secondary" data-dismiss="modal">{{'Core.FormButtons.Cancel' | translate}}</button>
+                <button type="button" class="btn btn-primary" (click)="updateData()">{{'Core.FormButtons.Save' | translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>
